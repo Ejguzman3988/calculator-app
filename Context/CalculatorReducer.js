@@ -23,6 +23,10 @@ export function CalculatorReducer(calcState, action) {
             storedNum: equals,
             history: [...calcState.history, equals],
           };
+        } else {
+          return {
+            ...calcState,
+          };
         }
       }
       if (calcState.resetDisplay) {
