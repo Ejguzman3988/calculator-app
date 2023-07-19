@@ -3,12 +3,31 @@ export function CalculatorReducer(calcState, action) {
     case "NUMBER_CLICK":
       let display = calcState.display.toString();
       let diffContent = new Set(["=", "."]);
-      if (!diffContent.has(action.content)) {
+
+      if (action.content === "." && !display.includes(".")) {
+        display += action.content;
+      }
+      if (action.content === "=") {
+        if (calcState.operator) {
+          const equals = eval(
+            calcState.storedNum + calcState.operator + display
+          );
+          console.log(equals);
+          return {
+            ...calcState,
+            display: equals,
+            operator: null,
+            storedNum: equals,
+            history: [...calcState.history, equals],
+          };
+        }
+      }
+      if (calcState.resetDisplay) {
+        display = action.content.toString();
+      } else {
         display === "0"
           ? (display = action.content.toString())
           : (display += action.content.toString());
-      } else if (action.content === "." && !display.includes(".")) {
-        display += action.content;
       }
 
       return {
@@ -18,7 +37,9 @@ export function CalculatorReducer(calcState, action) {
     case "OPERATION_CLICK":
       return {
         ...calcState,
-        operation: action.content
+        storedNum: calcState.display,
+        operator: action.content,
+        resetDisplay: true,
       };
     case "BUTTON_CLICK":
       return {

@@ -4,10 +4,11 @@ import { CalculatorContext, CalculatorDispatchContext } from "./context";
 import { CalculatorReducer } from "./CalculatorReducer";
 
 const initialState = {
+  resetDisplay: false,
   display: 0,
   history: [],
   storedNum: 0,
-  operation: null,
+  operator: null,
 };
 
 const CalculatorProvider = ({ children }) => {
