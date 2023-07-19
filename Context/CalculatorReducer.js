@@ -35,7 +35,11 @@ export function CalculatorReducer(calcState, action) {
           };
         }
       }
-      if (calcState.resetDisplay) {
+      const prevAns = calcState.history[calcState.history.length - 1];
+      if (
+        calcState.resetDisplay &&
+        (display === calcState.storedNum || display === prevAns?.toString())
+      ) {
         display = action.content.toString();
       } else {
         display === "0"
