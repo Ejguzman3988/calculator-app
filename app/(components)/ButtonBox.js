@@ -4,7 +4,7 @@ const ButtonBox = () => {
   const numbers = ["=", ".", 0, 3, 2, 1, 6, 5, 4, 9, 8, 7]
     .reverse()
     .map((num) => <Button key={num} content={num} buttonType={"num"} />);
-  const operations = ["/", "x", "-", "+"].map((op) => (
+  const operations = ["/", "*", "-", "+"].map((op) => (
     <Button key={op} content={op} buttonType={"op"} />
   ));
 
