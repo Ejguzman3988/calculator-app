@@ -2,10 +2,13 @@ export function CalculatorReducer(calcState, action) {
   switch (action.type) {
     case "NUMBER_CLICK":
       let display = calcState.display.toString();
-      let diffContent = new Set(["=", "."]);
 
       if (action.content === "." && !display.includes(".")) {
         display += action.content;
+        return {
+          ...calcState,
+          display,
+        };
       }
       if (action.content === "=") {
         if (calcState.operator) {
