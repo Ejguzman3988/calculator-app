@@ -3,12 +3,18 @@ export function CalculatorReducer(calcState, action) {
     case "NUMBER_CLICK":
       let display = calcState.display.toString();
 
-      if (action.content === "." && !display.includes(".")) {
-        display += action.content;
-        return {
-          ...calcState,
-          display,
-        };
+      if (action.content === ".") {
+        if (!display.includes(".")) {
+          display += action.content;
+          return {
+            ...calcState,
+            display,
+          };
+        } else {
+          return {
+            ...calcState,
+          };
+        }
       }
       if (action.content === "=") {
         if (calcState.operator) {
