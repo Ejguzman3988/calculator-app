@@ -6,6 +6,8 @@ import { CalculatorReducer } from "./CalculatorReducer";
 const initialState = {
   display: 0,
   history: [],
+  storedNum: 0,
+  operation: null,
 };
 
 const CalculatorProvider = ({ children }) => {
